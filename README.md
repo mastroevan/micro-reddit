@@ -1,24 +1,65 @@
-# README
+# Micro-Reddit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A lightweight Reddit clone built with Ruby on Rails. This project focuses on modeling data and practicing ActiveRecord associations and validations. Users can create accounts, submit posts, and comment on posts.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## Features
 
-* System dependencies
+- **Users**: Create and manage user accounts with unique usernames and emails.
+- **Posts**: Users can create posts with titles and body content.
+- **Comments**: Users can comment on posts.
 
-* Configuration
+---
 
-* Database creation
+## Models and Associations
 
-* Database initialization
+### **User**
+- **Associations**:
+  - Has many posts.
+  - Has many comments.
+- **Attributes**:
+  - `username` - string
+  - `email` - string
 
-* How to run the test suite
+### **Post**
+- **Associations**:
+  - Belongs to a user.
+  - Has many comments.
+- **Attributes**:
+  - `title` - string
+  - `body` - text
+  - `user_id` - integer (foreign key)
 
-* Services (job queues, cache servers, search engines, etc.)
+### **Comment**
+- **Associations**:
+  - Belongs to a user.
+  - Belongs to a post.
+- **Attributes**:
+  - `body` - text
+  - `user_id` - integer (foreign key)
+  - `post_id` - integer (foreign key)
 
-* Deployment instructions
+---
 
-* ...
+## Validations
+
+### **User**
+- `username`: Must be present, unique, and 4-12 characters long.
+- `email`: Must be present and unique.
+
+### **Post**
+- `title`: Must be present and unique.
+- `body`: Must be present.
+
+### **Comment**
+- `body`: Must be present.
+
+---
+
+## Setup Instructions
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/micro-reddit.git
+   cd micro-reddit
