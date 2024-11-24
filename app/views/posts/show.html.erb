@@ -1,0 +1,23 @@
+<h1><%= @post.title %></h1>
+
+<p>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>Author:</strong> <%= @post.user.username if @post.user %>
+</p>
+
+<h2>Comments</h2>
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li>
+      <%= comment.body %>
+      <small>by <%= comment.user.username if comment.user %></small>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Edit Post", edit_post_path(@post) %> |
+<%= link_to "Back to Posts", posts_path %> |
+<%= link_to "Delete Post", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
